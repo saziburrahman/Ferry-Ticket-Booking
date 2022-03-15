@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Booking Syatem</title>
+    <link rel="stylesheet"  type="text/css" href="/css/newFerry.css">
+</head>
+
+<body id="body">
+
+    <div class="container">
+        <h2 id="header" class="test">Ticket Booking</h2>
+        <div class="form">
+            <div class="rickrt-left">
+                <label id="ticket" for="types">Ticket For </label>
+                <select onchange="show()" id="vOption">
+                    <option value="vnull"> --Chose Option-- </option>
+                    <option value="Bus">Bus</option>
+                    <option value="Truck">Truck</option>
+                    <option value="Microbus">Microbus</option>
+                    <option value="Motorcycle">Motorcycle</option>
+                    <option value="Passenger">Passenger</option>
+                </select>
+                <span id="error" style="color: red; display: none;">Field must fill up</span>
+                <br><br>
+
+            </div>
+
+
+            <div class="ticket-right">
+                <label id="ticket" for="types">Route Name</label>
+                <select onchange="rshow()" id="roption">
+                    <option value="rnull"> --Chose Option-- </option>
+                    <option value="Paturia to Doulodia">Paturia to Doulodia</option>
+                    <option value="Paturia to Aricha">Paturia to Aricha</option>
+                </select>
+
+            </div>
+
+            <div class="ticket-last">
+                <label id="ticket" for="types">Ferry Name</label>
+                <select id="foption">
+                    <!-- onchange="fshow()" -->
+                    <option value="fnull"> --Chose Option-- </option>
+                    <option value="A 9.00 AM" id="A" style="display: none;">A 9.00 AM</option>
+                    <option value="B 9.30 AM" id="B" style="display: none;">B 9.30 AM</option>
+                    <option value="C 10.00 AM" id="C" style="display: none;">C 10.00 AM</option>
+                    <option value="A1 10.30 AM" id="A1" style="display: none;">A 10.30 AM</option>
+                    <option value="B2 11.00 AM" id="B2" style="display: none;">B 11.00 AM</option>
+                    <option value="C2 11.30 AM" id="C2" style="display: none;">C 11.30 AM</option>
+                    <option value="A3 9.15 AM" id="A3" style="display: none;">A 9.15 AM</option>
+                    <option value="B3 9.45 AM" id="B3" style="display: none;">B 9.45 AM</option>
+                    <option value="C3 10.15 AM" id="C3" style="display: none;">C 10.15 AM</option>
+                </select>
+            </div>
+
+            <div class="pass-info" id="passInfo" style="color: white;">
+                <h3>Passenger-Info</h3>
+
+                <table>
+                    <tr>
+                        <td>
+                            <lebel for="name:">Name:
+                        </td>
+                        <td><input type="text" id="pName" required></td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <lebel for="name:">Phone No:
+                        </td>
+                        <td><input type="number" id="pPhone"  required></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <lebel for="name:">Quantity
+                        </td>
+                        <td><input type="number" id="qnt"><span id="qerror" style="display: none;color: red;">Quantity
+                                Must be
+                                grater than 0</span></td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+            <div style="display: none;color: white;" class="vehicle-info" id="vInfo">
+                <h3>Vehicle-Info</h3>
+
+                <table>
+                    <tr>
+                        <td>
+                            <lebel for="name:">Vehicle Name:
+                        </td>
+                        <td><input type="text" id="vName" required></td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <lebel for="name:">Vehicle Number:
+                        </td>
+                        <td><input type="text" id="vNumber" required></td>
+                    </tr>
+                </table>
+
+            </div>
+
+            <div class="footer">
+
+
+                <h3>Date</h3>
+                <input type="date" id="date">
+                <script>
+                    document.getElementById('date').value = new Date().toISOString().substring(0, 10);
+                </script>
+            </div>
+
+
+            <table>
+                <tr>
+                    <td>
+                        <button class="print-btn" id="myBtn" style="display: none;">Print</button>
+                    </td>
+                    <td>
+                        <button class="btn" onclick="displayInfo()" type="submit">Submit</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="left-weight" style="color: white;">
+            <h3>Available Space For Bus/Truck</h3>
+            <p id="dBus" style="color: black;"></p>
+
+            <!-- <h3>Available Space For Truck</h3>
+              <p id="d"></p> -->
+
+            <h3>Available Space For Microbus</h3>
+            <p id="dMicro" style="color: black;"></p>
+
+            <h3>Available Space For Mototrcycle</h3>
+            <p id="dMotor" style="color: black;"></p>
+
+            <h3>Available Space For Passenger</h3>
+            <p id="dPass" style="color: black;"></p>
+        </div>
+    </div>
+
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div style="width: 90%;min-height: 80%;margin:0 auto;" id="sTicket">
+
+
+                <div id="pTicket" style="width: 80%;margin: auto; margin-top: 40px; display:none;">
+                    <h1 style="text-align: center;">Bangladesh Ferry Corporation</h1>
+                    <div class="row" style="width: 100%;display: flex;margin-top: 20px;">
+                        <div class="col" style="width: 48%;">
+                            <h3>Ferry Name: <span id="fName"></span> </h3>
+                        </div>
+                        <div class="col" style="width: 48%;text-align: right;" id="">
+                            <h3>Ticket No: <span id="tNo"></span> </h3>
+                        </div>
+                    </div>
+                    <table class="table">
+                        <tr>
+                            <td>Name: </td>
+                            <td>
+                                <p id="tPname"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Quantity: </td>
+                            <td>
+                                <p id="tPqunt"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Phone: </td>
+                            <td>
+                                <p id="tPhone"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Ticket Price: </td>
+                            <td>
+                                <p id="PTprice"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Date: </td>
+                            <td>
+                                <p id="sDate"></p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="vTicket" style="width: 80%;margin: auto; margin-top: 40px;display: none;">
+                    <h1 style="text-align: center;">Bangladesh Ferry Corporation</h1>
+                    <div class="row" style="width: 100%;display: flex;margin-top: 20px;">
+                        <div class="col" style="width: 48%;">
+                            <h3>Ferry Name: <span id="vFName"></span></h3>
+                        </div>
+                        <div class="col" style="width: 48%;text-align: right;" id="">
+                            <h3>Ticket No: <span id="VtNo"></span> </h3>
+                        </div>
+                    </div>
+                    <table class="table">
+                        <tr>
+                            <td>Vehicle Name: </td>
+                            <td>
+                                <p id="tVname"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Vehicle Number: </td>
+                            <td>
+                                <p id="tVnumber"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Ticket Price: </td>
+                            <td>
+                                <p id="VTprice"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Date: </td>
+                            <td>
+                                <p id="sdDate"></p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <button id="print"
+                    style=" background-color: greenyellow; padding: 15px 25px; border-radius: 15px;border: none;cursor: pointer; float: right;"
+                    onclick="printPage()">Print</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Modal End -->
+
+    <script src="/js/ticketjs/app.js"></script>
+
+</body>
+
+</html>
