@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>Login Page</title>
+	<title>Login Page </title>
 	<!--Made with love by Mutiullah Samim -->
 
 	<!--Bootsrap 4 CDN-->
@@ -24,12 +24,18 @@
 
 <body>
 	<div class="container">
+		
+
 		<div class="d-flex justify-content-center h-100">
-
 			<div class="card">
-
 				<div class="card-body">
-					<!-- <span>error</span> -->
+					<% if(title==1){%>
+						<span id="error" style="display: block;color: red;">Wrong Username or Password</span>
+					<%}if(title==0){%>
+						<span id="error" style="display: none;color: red;">error</span>
+					<%}
+					%>
+					
 					<form action="/login" method="post">
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
@@ -66,29 +72,7 @@
 		
 	</div>
 
-	<!-- <script>
-		
-
-
-		document.getElementById('btn').addEventListener('click', () => {
-
-			let name = document.getElementById('useName').value;
-			let passWord = document.getElementById('passord').value;
-
-			if (name == 'admin' && passWord == 1234) {
-				document.location.href = 'admin/index.html'
-				console.log('admin');
-			}
-			else if (name == 'user' && passWord == '12345') {
-				location.replace("ticket/newFerry.html");
-			}
-			else {
-				console.log('passWord False');
-			}
-		});
-
-
-	</script> -->
+	
 
 	
 </body>
