@@ -3,9 +3,7 @@
   padding: 0;
 }
 
-.test{
-  color: red;
-}
+
 .modal {
   display: none;
   /* Hidden by default */
@@ -52,7 +50,7 @@
   margin-left: 60px;
   margin-top: 30px;
   width: 650px;
-  min-height: 350px;
+  min-height: 330px;
   float: left;
   border: 2px solid rgb(67, 168, 177);
   background-color: rgba(0,0,0,0.5) !important;
@@ -166,8 +164,8 @@ select {
   font-size: 20px;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   float: right;
-  margin-left: 430px;
-  margin-top: 20px;
+  /* margin-left: 430px; */
+  margin-top: 5px;
   margin-right: 4%;
   background-color: rgb(219, 141, 141);
 }
@@ -180,7 +178,7 @@ select {
   font-size: 20px;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   float: left;
-  margin-top: 20px;
+  /* margin-top: 5px; */
   margin-left: 15px;
   background-color: rgb(219, 141, 141);
 }
@@ -192,8 +190,6 @@ select {
   float: right;
   margin-right: 60px;
   margin-top: 30px;
-  /* opacity: 0.8; */
-  color: black;
 }
 
 .left-weight h3 {
